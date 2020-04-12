@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:edit, :update]
   def new
     @user = User.new
   end
@@ -27,6 +27,10 @@ class UsersController < ApplicationController
   end
 
   private
+  
+  def set_user
+      @user = :current_user
+  end
   def user_params
     params.require(:user).permit(:first_name, :last_name, :username, :role,  :password, :password_confirmation, :active)
   end
