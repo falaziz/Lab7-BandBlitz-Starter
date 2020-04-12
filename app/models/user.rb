@@ -10,5 +10,9 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
   
+  def self.authenticate(email,password)
+    find_by_email(email).try(:authenticate, password)
+  end
+  
   
 end
